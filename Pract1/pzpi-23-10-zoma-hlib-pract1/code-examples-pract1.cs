@@ -106,14 +106,22 @@ class Program
     static void Main()
     {
         Department itDepartment = new Department();
-        itDepartment.AddEmployee(new Employee("Олександр Іванов", "Software Engineer"));
-        itDepartment.AddEmployee(new Employee("Марія Петренко", "Project Manager"));
+        itDepartment.AddEmployee(new Employee("Oleksandr Ivanov", "Software Engineer"));
+        itDepartment.AddEmployee(new Employee("Mariia Petrenko", "Project Manager"));
 
-        Console.WriteLine("Прямий обхід:");
+        Console.WriteLine("Forward iteration:");
+        IEnumerator enumerator = itDepartment.GetEnumerator();
+        while (enumerator.MoveNext())
+        {
+            Employee emp = (Employee)enumerator.Current!;
+            Console.WriteLine(emp);
+        }
+
+        Console.WriteLine("\nForward iteration with foreach:");
         foreach (Employee element in itDepartment)
             Console.WriteLine(element);
 
-        Console.WriteLine("\nЗворотний обхід:");
+        Console.WriteLine("\nReverse iteration:");
         itDepartment.ReverseDirection();
         foreach (Employee element in itDepartment)
             Console.WriteLine(element);
